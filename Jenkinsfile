@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy to Tomcat') {
             steps {
                 sh '''
-                    sudo cp target/traveldesk-1.0.war \
+                    cp target/traveldesk-1.0.war \
                     /var/lib/tomcat10/webapps/
                 '''
             }
