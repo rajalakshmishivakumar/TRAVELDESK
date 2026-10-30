@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelDesk - Explore the World</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f6ff;
+            color: #24324a;
+        }
+
+        header {
+            background: #123c69;
+            color: white;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            margin: 0;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px;
+            background: linear-gradient(135deg, #dcecff, #ffffff);
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            color: #123c69;
+        }
+
+        .hero p {
+            color: #53657c;
+            font-size: 17px;
+        }
+
+        .booking {
+            max-width: 850px;
+            margin: -15px auto 35px;
+            padding: 28px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px #d4dfed;
+        }
+
+        .booking h2 {
+            margin-top: 0;
+        }
+
+        .fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd6e3;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        button {
+            margin-top: 20px;
+            background: #1677d2;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #105ba3;
+        }
+
+        #result {
+            margin-top: 18px;
+            color: #087443;
+            font-weight: bold;
+        }
+
+        .destinations {
+            padding: 20px 8% 45px;
+            text-align: center;
+        }
+
+        .places {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .place {
+            background: white;
+            padding: 25px 15px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #dce4ee;
+        }
+
+        .place .emoji {
+            font-size: 40px;
+        }
+
+        footer {
+            text-align: center;
+            background: #123c69;
+            color: white;
+            padding: 18px;
+        }
+
+        @media (max-width: 600px) {
+            .fields, .places {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>✈ TravelDesk</h2>
+    <a href="#booking">Plan Your Trip</a>
+</header>
+
+<section class="hero">
+    <h1>Explore the World with TravelDesk</h1>
+    <p>Discover new destinations and plan your next adventure.</p>
+</section>
+
+<section class="booking" id="booking">
+    <h2>Plan Your Journey</h2>
+
+    <form id="travelForm">
+        <div class="fields">
+            <div>
+                <label for="destination">Destination</label>
+                <select id="destination" required>
+                    <option value="">Choose a destination</option>
+                    <option>Goa</option>
+                    <option>Manali</option>
+                    <option>Jaipur</option>
+                    <option>Kerala</option>
+                    <option>Paris</option>
+                    <option>Singapore</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="travelDate">Travel Date</label>
+                <input type="date" id="travelDate" required>
+            </div>
+
+            <div>
+                <label for="travelers">Number of Travelers</label>
+                <select id="travelers">
+                    <option value="1">1 Traveler</option>
+                    <option value="2">2 Travelers</option>
+                    <option value="3">3 Travelers</option>
+                    <option value="4">4 Travelers</option>
+                    <option value="5+">5 or more</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="tripType">Trip Type</label>
+                <select id="tripType">
+                    <option>Adventure</option>
+                    <option>Family Vacation</option>
+                    <option>Honeymoon</option>
+                    <option>Business</option>
+                    <option>Relaxation</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit">Search Trips</button>
+        <p id="result"></p>
+    </form>
+</section>
+
+<section class="destinations">
+    <h2>Popular Destinations</h2>
+
+    <div class="places">
+        <div class="place">
+            <div class="emoji">🏖️</div>
+            <h3>Goa</h3>
+            <p>Beaches, sunsets and relaxation.</p>
+        </div>
+
+        <div class="place">
+            <div class="emoji">🏔️</div>
+            <h3>Manali</h3>
+            <p>Mountains, snow and adventure.</p>
+        </div>
+
+        <div class="place">
+            <div class="emoji">🌴</div>
+            <h3>Kerala</h3>
+            <p>Green landscapes and peaceful backwaters.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 TravelDesk | Your Journey, Our Passion</p>
+</footer>
+
+<script>
+    document.getElementById("travelForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const destination = document.getElementById("destination").value;
+        const date = document.getElementById("travelDate").value;
+        const travelers = document.getElementById("travelers").value;
+        const tripType = document.getElementById("tripType").value;
+
+        document.getElementById("result").textContent =
+            "Your " + tripType + " trip to " + destination +
+            " on " + date + " for " + travelers +
+            " traveler(s) is ready to plan!";
+    });
+</script>
+
+</body>
+</html>
+
